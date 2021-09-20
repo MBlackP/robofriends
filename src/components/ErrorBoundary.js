@@ -13,8 +13,7 @@ class ErrorBoundary extends Component {
     }
 
     render() {
-        const {hasError} = this.state;
-        if (hasError) {
+        if (this.state.hasError) {
             return <h1>Oops. That is not good.</h1>
         }
     }

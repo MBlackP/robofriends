@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
-import ErrorBoundary from '../components/ErrorBoundary';
 import './App.css';
 
 // Smart component because it has state. Smart components tend to have the class syntax.
@@ -17,10 +16,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())
-        .then(users => this.setState({ robots: users})
-        );
+        fetch('https://jsonplaceholder.typicode.com/users').then(response => response.json()).then(users => {this.setState({ robots: users})});
     }
 
     onSearchChange = (event) => {
@@ -40,9 +36,7 @@ class App extends Component {
                         <h1>RoboFriends</h1>
                         <SearchBox searchChange={this.onSearchChange}/>
                         <Scroll>
-                            <ErrorBoundary>
-                                <CardList robots={filteredRobots}/>
-                            </ErrorBoundary>
+                            <CardList robots={filteredRobots}/>
                         </Scroll>
                     </div>
         );
